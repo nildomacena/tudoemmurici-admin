@@ -1,0 +1,14 @@
+<nav>
+  <div class="nav-wrapper">
+    <a style="cursor: pointer;" (click)="onNavigate('')" class="brand-logo">Tudo em Murici</a>
+    <ul class="right">
+      <li><a class="dropdown-trigger" style="cursor: pointer;" data-target="dropdown1">Estabelecimentos</a></li>
+      <li><a *ngIf="user" (click)="sair()">Sair</a></li>
+    </ul>
+  </div>
+</nav>
+
+<ul id="dropdown1" class="dropdown-content">
+  <li><a *ngIf="user" (click)="onNavigate('cadastro')">Cadastro</a></li>
+  <li><a *ngIf="user" (click)="onNavigate('consulta-estabelecimento')">Consulta</a></li> 
+</ul>

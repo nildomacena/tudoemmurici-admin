@@ -1,0 +1,54 @@
+<h2 class="center-align">Cadastro de estabelecimento</h2>
+<hr>
+<br>
+<div class="row">
+  <div class="col l4 offset-l4 m10 offset-m1 s12" id="cadastro">
+    <form [formGroup]="formCadastro" (ngSubmit)="onSubmitCadastro()">
+      <div class="row">
+        <div class="col s12 input-field">
+          <input type="email" autofocus id="email" name="email" class="validate" formControlName="email">
+          <label for="email">Digite o email</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s12 input-field">
+          <input type="text" autofocus id="nome" name="nome" class="validate" formControlName="nome">
+          <label for="nome">Nome do estabelecimento</label>
+        </div>
+      </div>
+      <div class="row">
+        <label>Categoria</label>
+        <select class="col s12 input-field browser-default" formControlName="categoria">
+          <option value="" disabled selected>Selecione a categoria</option>
+          <option *ngFor="let categoria of categorias" [value]="categoria.key">{{categoria.nome}}</option>
+        </select>
+      </div>
+      <div class="row">
+        <label>Categoria</label>
+        <select class="col s12 input-field browser-default" formControlName="plano">
+          <option value="" disabled selected>Selecione a categoria</option>
+          <option *ngFor="let plano of planos" [value]="plano.key">{{plano.descricao}}</option>
+        </select>
+      </div>
+      <div class="row">
+        <div class="col s12">
+          <label>
+            <input type="checkbox" id="imagemAdicional" formControlName="imagemAdicional" />
+            <span for="imagemAdicional">Imagem Adicional?</span>
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s12">
+          <label>
+            <input type="checkbox" id="slides" formControlName="slides" />
+            <span for="slides">Slides?</span>
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <input [disabled]="formCadastro.invalid" class="col s12 m8 offset-m2 l4 offset-l4 btn btn-waves" type="submit" />
+      </div>
+    </form>
+  </div>
+</div>
