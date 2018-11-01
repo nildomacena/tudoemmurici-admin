@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="col l6 offset-l3 m10 offset-m1 s12" id="notificacao">
+    <h2 class="center-align">Enviar Notificação</h2>
+    <hr>
+    <br>
+    <div class="row">
+      <div class="col s12 input-field">
+        <input type="text" autofocus id="titulo" name="titulo" class="validate" [(ngModel)]="tituloNotificacao">
+        <label for="titulo">Título da notificação</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12 input-field">
+        <textarea autofocus id="texto" name="texto" class="validate" #textareaNotificacao [(ngModel)]="corpoNotificacao"
+          class="materialize-textarea"></textarea>
+        <label for="notificacao_corpo">Digite o corpo da notificação</label>
+      </div>
+    </div>
+    <div class="row">
+      <label>Estabelecimentos</label>
+      <select class="col s12 input-field browser-default" #selectNotificacao [(ngModel)]="estabelecimentoKeyNotificacao">
+        <option value="" disabled selected>Selecione o estabelecimento</option>
+        <option *ngFor="let estabelecimento of estabelecimentosFiltrados" [value]="estabelecimento.key">{{estabelecimento.nome}}</option>
+      </select>
+    </div>
+    <div class="row">
+      <div class="col s6 offset-s3">
+        <button (click)="enviarNotificacao(selectNotificacao, textareaNotificacao)" class="btn btn-waves" style="width:100%">Enviar</button>
+      </div>
+    </div>
+  </div>
+</div>

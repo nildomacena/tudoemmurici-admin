@@ -17,6 +17,11 @@ import { HeaderComponent } from './header/header.component';
 import { CadastroComponent } from './cadastro/cadastro.component';
 import { ConsultaEstabelecimentoComponent } from './consulta-estabelecimento/consulta-estabelecimento.component';
 import { EstabelecimentoComponent } from './estabelecimento/estabelecimento.component';
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
+import { AgmCoreModule } from '@agm/core';
+import { NotificacaoComponent } from './notificacao/notificacao.component';
+import { SorteiosComponent } from './sorteios/sorteios.component';
+import { DestaquesComponent } from './destaques/destaques.component';
 
 
 const firebaseConfig = {
@@ -35,17 +40,24 @@ const firebaseConfig = {
     HeaderComponent,
     CadastroComponent,
     ConsultaEstabelecimentoComponent,
-    EstabelecimentoComponent
+    EstabelecimentoComponent,
+    NotificacaoComponent,
+    SorteiosComponent,
+    DestaquesComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     AngularFireAuthModule,
+    Ng4LoadingSpinnerModule.forRoot(),
     AngularFireDatabaseModule,
     AngularFireStorageModule,
     AngularFireModule.initializeApp(firebaseConfig),
     RouterModule.forRoot(appRoutes),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyB8pu0UXs3XDxxcsc1-8Zv5PYwet5-Vm8Y'
+    })
   ],
   providers: [
     FireService
