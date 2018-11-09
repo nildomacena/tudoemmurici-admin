@@ -13,8 +13,16 @@ export class LoginComponent implements OnInit {
   senha:string;
   constructor(public fire: FireService, public router: Router, public afAuth: AngularFireAuth) {
     this.afAuth.authState.subscribe(user => {
-      if(user)
-      this.router.navigate(['cadastro']);
+      if(user){
+        this.fire.checkAdmin(user.uid)
+          .then(snap => {
+            if(snap.length > 0)
+              this.router.navigate(['cadastro']);
+            else{
+              this.afAuth.auth.signOut();
+            } 
+          })
+      }
     })
   }
 

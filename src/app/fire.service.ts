@@ -16,9 +16,13 @@ export class FireService {
   constructor(public afAuth: AngularFireAuth, public db: AngularFireDatabase, public storage: AngularFireStorage) { }
 
   login(user) {
-    return this.afAuth.auth.signInWithEmailAndPassword(user.email, user.senha);
+    return this.afAuth.auth.signInWithEmailAndPassword(user.email, user.senha)
+
   }
 
+  checkAdmin(uid:string){
+    return this.db.list('admin', ref => ref.orderByChild('uid').equalTo(uid)).snapshotChanges().pipe(first()).toPromise();
+  }
   getCategorias(): Promise<any> {
     return this.db.list('categorias').snapshotChanges().pipe(first()).toPromise().then(snap => this.snapshotParaValue(snap));
   }
@@ -73,6 +77,7 @@ export class FireService {
   }
 
   cadastrarEstabelecimento(estabelecimento: any): Promise<any> {
+    console.log(estabelecimento);
     estabelecimento['ativado'] = false;
     return this.db.list('estabelecimentos', ref => ref.orderByChild('email').equalTo(estabelecimento.email))
       .valueChanges().pipe(first()).toPromise().then(value => {

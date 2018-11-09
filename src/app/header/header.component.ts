@@ -18,8 +18,10 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.afAuth.authState.subscribe(user => {
-      this.user = user;
-      if (!user)
+      setTimeout(() => {
+        this.user = user;
+      }, 500);
+        if (!user)
         this.router.navigate(['']);
       setTimeout(() => {
 
